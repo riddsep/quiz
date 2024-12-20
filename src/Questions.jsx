@@ -1,7 +1,11 @@
-export default function Questions() {
+export default function Questions({ questions }) {
+  console.log(questions[0]);
   return (
-    <div>
-      <h1>HALLO</h1>
+    <div className="progress">
+      <h3>{questions[1].question}</h3>
+      {questions[1].options.map((opt) => (
+        <p key={opt}>{opt}</p>
+      ))}
     </div>
   );
 }
