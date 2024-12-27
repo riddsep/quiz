@@ -1,5 +1,9 @@
-export default function Option({ question, dispatch, answer }) {
+import { useQuiz } from "../contexts/QuizContext";
+
+export default function Option() {
+  const { questions, index, handleNewAnswer, answer } = useQuiz();
   const hasAnswer = answer !== null;
+  const question = questions[index];
   return (
     <div className="options">
       {question.options.map((option, index) => (
@@ -15,7 +19,7 @@ export default function Option({ question, dispatch, answer }) {
                 : ""
             } 
             ${index === answer ? "answer" : ""}`}
-          onClick={() => dispatch({ type: "newAnswer", payload: index })}
+          onClick={() => handleNewAnswer(index)}
         >
           {option}
         </button>

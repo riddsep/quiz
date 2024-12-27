@@ -1,12 +1,14 @@
 import { useEffect } from "react";
+import { useQuiz } from "../contexts/QuizContext";
 
-export default function Timer({ dispatch, secondsRemaining }) {
+export default function Timer() {
+  const { dispatch, secondsRemaining, handleTick } = useQuiz();
   const mins = Math.floor(secondsRemaining / 60);
   const seconds = Math.floor(secondsRemaining % 60);
 
   useEffect(() => {
     const id = setInterval(() => {
-      dispatch({ type: "tick" });
+      handleTick();
     }, 1000);
 
     return () => clearInterval(id);

@@ -1,9 +1,7 @@
-export default function FinishScreen({
-  points,
-  maxPossible,
-  highscore,
-  dispatch,
-}) {
+import { useQuiz } from "../contexts/QuizContext";
+
+export default function FinishScreen() {
+  const { points, maxPossible, highscore, handleRestart } = useQuiz();
   const percentage = (points / maxPossible) * 100;
   let emoji;
   if (percentage === 100) emoji = "🥇";
@@ -18,10 +16,7 @@ export default function FinishScreen({
         {Math.ceil(percentage)}%)
       </p>
       <p className="highscore">(Highscore: {highscore} points)</p>
-      <button
-        className="btn btn-ui"
-        onClick={() => dispatch({ type: "restart" })}
-      >
+      <button className="btn btn-ui" onClick={handleRestart}>
         Restart
       </button>
     </>

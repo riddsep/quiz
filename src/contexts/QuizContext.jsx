@@ -85,6 +85,10 @@ function QuizProvider({ children }) {
     dispatch({ type: "restart" });
   }
 
+  function handleTick() {
+    dispatch({ type: "tick" });
+  }
+
   useEffect(() => {
     fetch("http://localhost:8000/questions")
       .then((res) => res.json())
@@ -108,6 +112,7 @@ function QuizProvider({ children }) {
         handleNextQuestion,
         handleFinish,
         handleRestart,
+        handleTick,
       }}
     >
       {children}
